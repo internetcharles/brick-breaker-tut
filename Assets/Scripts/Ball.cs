@@ -9,15 +9,21 @@ public class Ball : MonoBehaviour
     [SerializeField] Paddle paddle1;
     [SerializeField] float xPush = 2f;
     [SerializeField] float yPush = 15f;
+    [SerializeField] AudioClip[] ballSounds;
 
     // state
     Vector3 paddleToBallVector;
     bool hasStarted = false;
 
+    // Cached component references
+    AudioSource myAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         paddleToBallVector = transform.position - paddle1.transform.position;
+        myAudioSource = GetComponent<AudioSource>();
+        hasStarted = false;
     }
 
     // Update is called once per frame
@@ -28,6 +34,7 @@ public class Ball : MonoBehaviour
             LockBallToPaddle();
             LaunchBallOnMouseClick();
         }
+
     }
 
     private void LaunchBallOnMouseClick()
@@ -44,4 +51,14 @@ public class Ball : MonoBehaviour
         Vector3 paddlePos = new Vector3(paddle1.transform.position.x, paddle1.transform.position.y, 1);
         transform.position = paddlePos + paddleToBallVector;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (hasStarted)
+        {
+            AudioClip clip = ballSounds[UnityEngine.Random.Range(0, ballSounds.Length)];
+            myAudioSource.PlayOneShot(clip);
+        }
+    }
+
 }

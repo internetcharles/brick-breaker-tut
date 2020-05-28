@@ -52,13 +52,5 @@ public class Ball : MonoBehaviour
         transform.position = paddlePos + paddleToBallVector;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (hasStarted)
-        {
-            AudioClip clip = ballSounds[UnityEngine.Random.Range(0, ballSounds.Length - 1)];
-            myAudioSource.PlayOneShot(clip);
-        }
-    }
 
 }

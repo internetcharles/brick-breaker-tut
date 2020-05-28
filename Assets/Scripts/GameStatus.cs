@@ -21,6 +21,20 @@ public class GameStatus : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        int gameStatusCount = FindObjectsOfType<GameStatus>().Length;
+        if (gameStatusCount > 1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -31,6 +45,11 @@ public class GameStatus : MonoBehaviour
     public void AddToScore()
     {
         currentScore += pointsPerBlockDestroyed;
+    }
+
+    public void ResetScore()
+    {
+        Destroy(gameObject);
     }
 
 }

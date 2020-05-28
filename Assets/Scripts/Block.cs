@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField] AudioClip breakSound;
-
     Level level;
     GameStatus gameStatus;
 
@@ -23,7 +21,6 @@ public class Block : MonoBehaviour
     private void DestroyBlock()
     {
         gameStatus = FindObjectOfType<GameStatus>();
-        AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
         Destroy(gameObject);
         level.BlockDestroyed();
         gameStatus.AddToScore();

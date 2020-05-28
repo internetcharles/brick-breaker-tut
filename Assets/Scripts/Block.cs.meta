@@ -3,7 +3,8 @@ guid: 3631d9e6b5e56674da0b85d10d58c60d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
